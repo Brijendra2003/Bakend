@@ -1,0 +1,65 @@
+const express = require("express");
+const mysql = require("mysql2");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const cors = require("cors");
+const cookieParser = require("cookie-parser");
+const verifyToken = require("./verifyUser");
+//
+const register = require("./Register");
+const login = require("./Login");
+const home = require("./Home");
+const teacher = require("./teacher");
+const subjects = require("./Subjects");
+const timeTable = require("./Timetable");
+
+const app = express();
+app.use(express.json());
+app.use(
+  cors({
+    origin: "https://brijendra2003.github.io/Time-table-admin/",
+    credentials: true,
+  })
+); // Adjust for frontend
+app.use(cookieParser());
+
+const db = mysql.createConnection({
+  host: "interchange.proxy.rlwy.net",
+  user: "root",
+  password: "mKBiTrThqdWXDSXQnBORvdgwofDzysLn",
+  database: "railway",
+  port: "34800",
+  connectTimeout: 10000,
+});
+// const db = mysql.createConnection({
+//   host: "localhost",
+//   user: "root",
+//   password: "shreeram",
+//   database: "universalClg",
+// });
+
+db.connect((err) => {
+  if (err) console.log(err);
+  else console.log("MySQL Connected...");
+});
+
+// **User Registration**
+register(bcrypt, app, db);
+// ** User Login**
+login(bcrypt, jwt, app, db);
+//
+home(app, db, verifyToken);
+//
+teacher(app, db, verifyToken);
+//
+subjects(app, db, verifyToken);
+//
+timeTable(app, db, verifyToken);
+//q
+// **Logout**
+app.post("/logout", (req, res) => {
+  res.clearCookie("token").json({ message: "Logged out successfully" });
+  db.end();
+});
+
+app.listen(5000, () => console.log("Server running on port 5000"));
