@@ -24,11 +24,11 @@ app.use(
 app.use(cookieParser());
 
 const db = mysql.createConnection({
-  host: "interchange.proxy.rlwy.net",
+  host: "gondola.proxy.rlwy.net",
   user: "root",
-  password: "mKBiTrThqdWXDSXQnBORvdgwofDzysLn",
+  password: "uGPYemQOyPMoOmHiBUvWVeMzfWznnHLS",
   database: "railway",
-  port: "34800",
+  port: "3306",
   connectTimeout: 10000,
 });
 // const db = mysql.createConnection({
