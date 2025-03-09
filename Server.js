@@ -28,7 +28,7 @@ const db = mysql.createConnection({
   user: "root",
   password: "uGPYemQOyPMoOmHiBUvWVeMzfWznnHLS",
   database: "railway",
-  port: "3306",
+  port: "14516",
   connectTimeout: 10000,
 });
 // const db = mysql.createConnection({
