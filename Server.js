@@ -62,4 +62,8 @@ app.post("/logout", (req, res) => {
   db.end();
 });
 
-app.listen(5000, "0.0.0.0", () => console.log("Server running on port 5000"));
+const port = 5000;
+
+app.listen(port, "0.0.0.0", () =>
+  console.log(`Server running on port ${port} `)
+);
