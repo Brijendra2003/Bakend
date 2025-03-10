@@ -17,7 +17,7 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://brijendra2003.github.io/Time-table-admin/",
+    origin: "https://brijendra2003.github.io",
     credentials: true,
   })
 ); // Adjust for frontend
