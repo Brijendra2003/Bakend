@@ -59,7 +59,7 @@ timeTable(app, db, verifyToken);
 // **Logout**
 app.post("/logout", (req, res) => {
   res.clearCookie("token").json({ message: "Logged out successfully" });
-  db.end();
+  // db.end();
 });
 
 const port = 5000;
