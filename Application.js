@@ -44,6 +44,24 @@ function Application(app, db) {
       res.json(result);
     });
   });
+  //
+  //
+  //
+  app.get("/lecturerTT", (req, res) => {
+    console.log(req.query);
+    const { Id } = req.query;
+    const query = `select t.branch, t.semester, t.division, t.batch, t.day, t.lecture_time, s.subject_name from timetable t JOIN subjects s ON t.subject_id = s.subject_id where t.teacher_id = ${Id} `;
+    db.query(query, (err, result) => {
+      if (err) {
+        console.log(err);
+        return res.status(500).json({ error: err.message });
+      } else if (result.length === 0) {
+        return res.status(404).json({ message: "No data found!" }); // ✅ Use return
+      }
+      // console.log(result);
+      res.json(result);
+    });
+  });
 }
 
 module.exports = Application;
