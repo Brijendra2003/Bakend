@@ -1,5 +1,6 @@
--- create database universalClg;
--- use universalClg;
+drop database railway;
+create database railway;
+use railway;
 
 CREATE TABLE admin (
     username VARCHAR(20) NOT NULL,

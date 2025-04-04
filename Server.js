@@ -12,12 +12,13 @@ const home = require("./Home");
 const teacher = require("./teacher");
 const subjects = require("./Subjects");
 const timeTable = require("./Timetable");
+const Application = require("./Application");
 
 const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://brijendra2003.github.io",
+    origin: ["https://brijendra2003.github.io", "http://localhost:5173"],
     credentials: true,
   })
 ); // Adjust for frontend
@@ -55,7 +56,10 @@ teacher(app, db, verifyToken);
 subjects(app, db, verifyToken);
 //
 timeTable(app, db, verifyToken);
+//
+Application(app, db);
 //q
+
 // **Logout**
 app.post("/logout", (req, res) => {
   res.clearCookie("token").json({ message: "Logged out successfully" });
