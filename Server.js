@@ -23,7 +23,10 @@ app.use(
   })
 ); // Adjust for frontend
 app.use(cookieParser());
-
+//
+// this will allow iamges to be appear for frontend
+app.use("/assets", express.static(path.join(__dirname, "assets")));
+//
 const db = mysql.createConnection({
   host: "gondola.proxy.rlwy.net",
   user: "root",
