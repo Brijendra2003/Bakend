@@ -23,7 +23,7 @@ app.use(
   })
 ); // Adjust for frontend
 app.use(cookieParser());
-app.use("/assets", express.static(path.join(__dirname, "assets")));
+// app.use("/assets", express.static(path.join(__dirname, "assets")));
 //
 const db = mysql.createConnection({
   host: "gondola.proxy.rlwy.net",
